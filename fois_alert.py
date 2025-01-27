@@ -1,3 +1,5 @@
+!pip install -r requirements.txt
+
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
