@@ -1,0 +1,37 @@
+name: Run Selenium Script
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch if necessary
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-selenium:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Specify your desired Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Selenium script
+        run: |
+          python your_script.py  # Replace with the actual name of your script
+
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: freight-info-results
+          path: updated_daily_indents_freight_info.csv  # Adjust if necessary
